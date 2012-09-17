@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a69c30a8ff054f82b64158fc26997ba7" Name="Diagram1">
+        <EntityTypeShape EntityType="Company.Models.Production.Product" Width="2" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Company.Models.Production.ProductModel" Width="1.5" PointX="0.75" PointY="4.375" />
+        <EntityTypeShape EntityType="Company.Models.Production.ProductModelIllustration" Width="1.5" PointX="3" PointY="8.25" />
+        <EntityTypeShape EntityType="Company.Models.Production.ProductPhoto" Width="1.5" PointX="3.5" PointY="11.125" />
+        <EntityTypeShape EntityType="Company.Models.Production.ProductProductPhoto" Width="1.5" PointX="5.75" PointY="3.25" />
+        <AssociationConnector Association="Company.Models.Production.FK_Product_ProductModel_ProductModelID" />
+        <AssociationConnector Association="Company.Models.Production.FK_ProductProductPhoto_Product_ProductID" />
+        <AssociationConnector Association="Company.Models.Production.FK_ProductModelIllustration_ProductModel_ProductModelID" />
+        <AssociationConnector Association="Company.Models.Production.FK_ProductProductPhoto_ProductPhoto_ProductPhotoID" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

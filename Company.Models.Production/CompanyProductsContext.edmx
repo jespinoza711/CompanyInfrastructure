@@ -1,0 +1,406 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Company.Models.Production.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="CompanyModelsProductionStoreContainer">
+          <EntitySet Name="Product" EntityType="Company.Models.Production.Store.Product" store:Type="Tables" Schema="Production" />
+          <EntitySet Name="ProductModel" EntityType="Company.Models.Production.Store.ProductModel" store:Type="Tables" Schema="Production" />
+          <EntitySet Name="ProductModelIllustration" EntityType="Company.Models.Production.Store.ProductModelIllustration" store:Type="Tables" Schema="Production" />
+          <EntitySet Name="ProductPhoto" EntityType="Company.Models.Production.Store.ProductPhoto" store:Type="Tables" Schema="Production" />
+          <EntitySet Name="ProductProductPhoto" EntityType="Company.Models.Production.Store.ProductProductPhoto" store:Type="Tables" Schema="Production" />
+          <AssociationSet Name="FK_Product_ProductModel_ProductModelID" Association="Company.Models.Production.Store.FK_Product_ProductModel_ProductModelID">
+            <End Role="ProductModel" EntitySet="ProductModel" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductModelIllustration_ProductModel_ProductModelID" Association="Company.Models.Production.Store.FK_ProductModelIllustration_ProductModel_ProductModelID">
+            <End Role="ProductModel" EntitySet="ProductModel" />
+            <End Role="ProductModelIllustration" EntitySet="ProductModelIllustration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductProductPhoto_Product_ProductID" Association="Company.Models.Production.Store.FK_ProductProductPhoto_Product_ProductID">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductProductPhoto" EntitySet="ProductProductPhoto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductProductPhoto_ProductPhoto_ProductPhotoID" Association="Company.Models.Production.Store.FK_ProductProductPhoto_ProductPhoto_ProductPhotoID">
+            <End Role="ProductPhoto" EntitySet="ProductPhoto" />
+            <End Role="ProductProductPhoto" EntitySet="ProductProductPhoto" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ProductNumber" Type="nvarchar" Nullable="false" MaxLength="25" />
+          <Property Name="MakeFlag" Type="bit" Nullable="false" />
+          <Property Name="FinishedGoodsFlag" Type="bit" Nullable="false" />
+          <Property Name="Color" Type="nvarchar" MaxLength="15" />
+          <Property Name="SafetyStockLevel" Type="smallint" Nullable="false" />
+          <Property Name="ReorderPoint" Type="smallint" Nullable="false" />
+          <Property Name="StandardCost" Type="money" Nullable="false" />
+          <Property Name="ListPrice" Type="money" Nullable="false" />
+          <Property Name="Size" Type="nvarchar" MaxLength="5" />
+          <Property Name="SizeUnitMeasureCode" Type="nchar" MaxLength="3" />
+          <Property Name="WeightUnitMeasureCode" Type="nchar" MaxLength="3" />
+          <Property Name="Weight" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="DaysToManufacture" Type="int" Nullable="false" />
+          <Property Name="ProductLine" Type="nchar" MaxLength="2" />
+          <Property Name="Class" Type="nchar" MaxLength="2" />
+          <Property Name="Style" Type="nchar" MaxLength="2" />
+          <Property Name="ProductSubcategoryID" Type="int" />
+          <Property Name="ProductModelID" Type="int" />
+          <Property Name="SellStartDate" Type="datetime" Nullable="false" />
+          <Property Name="SellEndDate" Type="datetime" />
+          <Property Name="DiscontinuedDate" Type="datetime" />
+          <Property Name="rowguid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductModel">
+          <Key>
+            <PropertyRef Name="ProductModelID" />
+          </Key>
+          <Property Name="ProductModelID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="CatalogDescription" Type="xml" />
+          <Property Name="Instructions" Type="xml" />
+          <Property Name="rowguid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductModelIllustration">
+          <Key>
+            <PropertyRef Name="ProductModelID" />
+            <PropertyRef Name="IllustrationID" />
+          </Key>
+          <Property Name="ProductModelID" Type="int" Nullable="false" />
+          <Property Name="IllustrationID" Type="int" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductPhoto">
+          <Key>
+            <PropertyRef Name="ProductPhotoID" />
+          </Key>
+          <Property Name="ProductPhotoID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ThumbNailPhoto" Type="varbinary(max)" />
+          <Property Name="ThumbnailPhotoFileName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LargePhoto" Type="varbinary(max)" />
+          <Property Name="LargePhotoFileName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductProductPhoto">
+          <Key>
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="ProductPhotoID" />
+          </Key>
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="ProductPhotoID" Type="int" Nullable="false" />
+          <Property Name="Primary" Type="bit" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Product_ProductModel_ProductModelID">
+          <End Role="ProductModel" Type="Company.Models.Production.Store.ProductModel" Multiplicity="0..1" />
+          <End Role="Product" Type="Company.Models.Production.Store.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductModel">
+              <PropertyRef Name="ProductModelID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ProductModelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductModelIllustration_ProductModel_ProductModelID">
+          <End Role="ProductModel" Type="Company.Models.Production.Store.ProductModel" Multiplicity="1" />
+          <End Role="ProductModelIllustration" Type="Company.Models.Production.Store.ProductModelIllustration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductModel">
+              <PropertyRef Name="ProductModelID" />
+            </Principal>
+            <Dependent Role="ProductModelIllustration">
+              <PropertyRef Name="ProductModelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductProductPhoto_Product_ProductID">
+          <End Role="Product" Type="Company.Models.Production.Store.Product" Multiplicity="1" />
+          <End Role="ProductProductPhoto" Type="Company.Models.Production.Store.ProductProductPhoto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="ProductProductPhoto">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductProductPhoto_ProductPhoto_ProductPhotoID">
+          <End Role="ProductPhoto" Type="Company.Models.Production.Store.ProductPhoto" Multiplicity="1" />
+          <End Role="ProductProductPhoto" Type="Company.Models.Production.Store.ProductProductPhoto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductPhoto">
+              <PropertyRef Name="ProductPhotoID" />
+            </Principal>
+            <Dependent Role="ProductProductPhoto">
+              <PropertyRef Name="ProductPhotoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Company.Models.Production" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="CompanyProductsContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Product" EntityType="Company.Models.Production.Product" />
+          <EntitySet Name="ProductModel" EntityType="Company.Models.Production.ProductModel" />
+          <EntitySet Name="ProductModelIllustration" EntityType="Company.Models.Production.ProductModelIllustration" />
+          <EntitySet Name="ProductPhoto" EntityType="Company.Models.Production.ProductPhoto" />
+          <EntitySet Name="ProductProductPhoto" EntityType="Company.Models.Production.ProductProductPhoto" />
+          <AssociationSet Name="FK_Product_ProductModel_ProductModelID" Association="Company.Models.Production.FK_Product_ProductModel_ProductModelID">
+            <End Role="ProductModel" EntitySet="ProductModel" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductProductPhoto_Product_ProductID" Association="Company.Models.Production.FK_ProductProductPhoto_Product_ProductID">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductProductPhoto" EntitySet="ProductProductPhoto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductModelIllustration_ProductModel_ProductModelID" Association="Company.Models.Production.FK_ProductModelIllustration_ProductModel_ProductModelID">
+            <End Role="ProductModel" EntitySet="ProductModel" />
+            <End Role="ProductModelIllustration" EntitySet="ProductModelIllustration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductProductPhoto_ProductPhoto_ProductPhotoID" Association="Company.Models.Production.FK_ProductProductPhoto_ProductPhoto_ProductPhotoID">
+            <End Role="ProductPhoto" EntitySet="ProductPhoto" />
+            <End Role="ProductProductPhoto" EntitySet="ProductProductPhoto" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ProductNumber" Type="String" Nullable="false" MaxLength="25" Unicode="true" FixedLength="false" />
+          <Property Name="MakeFlag" Type="Boolean" Nullable="false" />
+          <Property Name="FinishedGoodsFlag" Type="Boolean" Nullable="false" />
+          <Property Name="Color" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="SafetyStockLevel" Type="Int16" Nullable="false" />
+          <Property Name="ReorderPoint" Type="Int16" Nullable="false" />
+          <Property Name="StandardCost" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="ListPrice" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Size" Type="String" MaxLength="5" Unicode="true" FixedLength="false" />
+          <Property Name="SizeUnitMeasureCode" Type="String" MaxLength="3" Unicode="true" FixedLength="true" />
+          <Property Name="WeightUnitMeasureCode" Type="String" MaxLength="3" Unicode="true" FixedLength="true" />
+          <Property Name="Weight" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="DaysToManufacture" Type="Int32" Nullable="false" />
+          <Property Name="ProductLine" Type="String" MaxLength="2" Unicode="true" FixedLength="true" />
+          <Property Name="Class" Type="String" MaxLength="2" Unicode="true" FixedLength="true" />
+          <Property Name="Style" Type="String" MaxLength="2" Unicode="true" FixedLength="true" />
+          <Property Name="ProductSubcategoryID" Type="Int32" />
+          <Property Name="ProductModelID" Type="Int32" />
+          <Property Name="SellStartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SellEndDate" Type="DateTime" Precision="3" />
+          <Property Name="DiscontinuedDate" Type="DateTime" Precision="3" />
+          <Property Name="rowguid" Type="Guid" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="ProductModel" Relationship="Company.Models.Production.FK_Product_ProductModel_ProductModelID" FromRole="Product" ToRole="ProductModel" />
+          <NavigationProperty Name="ProductProductPhoto" Relationship="Company.Models.Production.FK_ProductProductPhoto_Product_ProductID" FromRole="Product" ToRole="ProductProductPhoto" />
+        </EntityType>
+        <EntityType Name="ProductModel">
+          <Key>
+            <PropertyRef Name="ProductModelID" />
+          </Key>
+          <Property Type="Int32" Name="ProductModelID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CatalogDescription" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Instructions" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Guid" Name="rowguid" Nullable="false" />
+          <Property Type="DateTime" Name="ModifiedDate" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Product" Relationship="Company.Models.Production.FK_Product_ProductModel_ProductModelID" FromRole="ProductModel" ToRole="Product" />
+          <NavigationProperty Name="ProductModelIllustration" Relationship="Company.Models.Production.FK_ProductModelIllustration_ProductModel_ProductModelID" FromRole="ProductModel" ToRole="ProductModelIllustration" />
+        </EntityType>
+        <EntityType Name="ProductModelIllustration">
+          <Key>
+            <PropertyRef Name="ProductModelID" />
+            <PropertyRef Name="IllustrationID" />
+          </Key>
+          <Property Type="Int32" Name="ProductModelID" Nullable="false" />
+          <Property Type="Int32" Name="IllustrationID" Nullable="false" />
+          <Property Type="DateTime" Name="ModifiedDate" Nullable="false" Precision="3" />
+          <NavigationProperty Name="ProductModel" Relationship="Company.Models.Production.FK_ProductModelIllustration_ProductModel_ProductModelID" FromRole="ProductModelIllustration" ToRole="ProductModel" />
+        </EntityType>
+        <EntityType Name="ProductPhoto">
+          <Key>
+            <PropertyRef Name="ProductPhotoID" />
+          </Key>
+          <Property Type="Int32" Name="ProductPhotoID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Binary" Name="ThumbNailPhoto" MaxLength="Max" FixedLength="false" />
+          <Property Type="String" Name="ThumbnailPhotoFileName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Binary" Name="LargePhoto" MaxLength="Max" FixedLength="false" />
+          <Property Type="String" Name="LargePhotoFileName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="ModifiedDate" Nullable="false" Precision="3" />
+          <NavigationProperty Name="ProductProductPhoto" Relationship="Company.Models.Production.FK_ProductProductPhoto_ProductPhoto_ProductPhotoID" FromRole="ProductPhoto" ToRole="ProductProductPhoto" />
+        </EntityType>
+        <EntityType Name="ProductProductPhoto">
+          <Key>
+            <PropertyRef Name="ProductID" />
+            <PropertyRef Name="ProductPhotoID" />
+          </Key>
+          <Property Type="Int32" Name="ProductID" Nullable="false" />
+          <Property Type="Int32" Name="ProductPhotoID" Nullable="false" />
+          <Property Type="Boolean" Name="Primary" Nullable="false" />
+          <Property Type="DateTime" Name="ModifiedDate" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Product" Relationship="Company.Models.Production.FK_ProductProductPhoto_Product_ProductID" FromRole="ProductProductPhoto" ToRole="Product" />
+          <NavigationProperty Name="ProductPhoto" Relationship="Company.Models.Production.FK_ProductProductPhoto_ProductPhoto_ProductPhotoID" FromRole="ProductProductPhoto" ToRole="ProductPhoto" />
+        </EntityType>
+        <Association Name="FK_Product_ProductModel_ProductModelID">
+          <End Type="Company.Models.Production.ProductModel" Role="ProductModel" Multiplicity="0..1" />
+          <End Type="Company.Models.Production.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductModel">
+              <PropertyRef Name="ProductModelID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ProductModelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductProductPhoto_Product_ProductID">
+          <End Type="Company.Models.Production.Product" Role="Product" Multiplicity="1" />
+          <End Type="Company.Models.Production.ProductProductPhoto" Role="ProductProductPhoto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="ProductProductPhoto">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductModelIllustration_ProductModel_ProductModelID">
+          <End Type="Company.Models.Production.ProductModel" Role="ProductModel" Multiplicity="1" />
+          <End Type="Company.Models.Production.ProductModelIllustration" Role="ProductModelIllustration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductModel">
+              <PropertyRef Name="ProductModelID" />
+            </Principal>
+            <Dependent Role="ProductModelIllustration">
+              <PropertyRef Name="ProductModelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductProductPhoto_ProductPhoto_ProductPhotoID">
+          <End Type="Company.Models.Production.ProductPhoto" Role="ProductPhoto" Multiplicity="1" />
+          <End Type="Company.Models.Production.ProductProductPhoto" Role="ProductProductPhoto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductPhoto">
+              <PropertyRef Name="ProductPhotoID" />
+            </Principal>
+            <Dependent Role="ProductProductPhoto">
+              <PropertyRef Name="ProductPhotoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CompanyModelsProductionStoreContainer" CdmEntityContainer="CompanyProductsContext">
+          <EntitySetMapping Name="Product">
+            <EntityTypeMapping TypeName="Company.Models.Production.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ProductNumber" ColumnName="ProductNumber" />
+                <ScalarProperty Name="MakeFlag" ColumnName="MakeFlag" />
+                <ScalarProperty Name="FinishedGoodsFlag" ColumnName="FinishedGoodsFlag" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="SafetyStockLevel" ColumnName="SafetyStockLevel" />
+                <ScalarProperty Name="ReorderPoint" ColumnName="ReorderPoint" />
+                <ScalarProperty Name="StandardCost" ColumnName="StandardCost" />
+                <ScalarProperty Name="ListPrice" ColumnName="ListPrice" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="SizeUnitMeasureCode" ColumnName="SizeUnitMeasureCode" />
+                <ScalarProperty Name="WeightUnitMeasureCode" ColumnName="WeightUnitMeasureCode" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="DaysToManufacture" ColumnName="DaysToManufacture" />
+                <ScalarProperty Name="ProductLine" ColumnName="ProductLine" />
+                <ScalarProperty Name="Class" ColumnName="Class" />
+                <ScalarProperty Name="Style" ColumnName="Style" />
+                <ScalarProperty Name="ProductSubcategoryID" ColumnName="ProductSubcategoryID" />
+                <ScalarProperty Name="ProductModelID" ColumnName="ProductModelID" />
+                <ScalarProperty Name="SellStartDate" ColumnName="SellStartDate" />
+                <ScalarProperty Name="SellEndDate" ColumnName="SellEndDate" />
+                <ScalarProperty Name="DiscontinuedDate" ColumnName="DiscontinuedDate" />
+                <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductModel">
+            <EntityTypeMapping TypeName="Company.Models.Production.ProductModel">
+              <MappingFragment StoreEntitySet="ProductModel">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="rowguid" ColumnName="rowguid" />
+                <ScalarProperty Name="Instructions" ColumnName="Instructions" />
+                <ScalarProperty Name="CatalogDescription" ColumnName="CatalogDescription" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ProductModelID" ColumnName="ProductModelID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductModelIllustration">
+            <EntityTypeMapping TypeName="Company.Models.Production.ProductModelIllustration">
+              <MappingFragment StoreEntitySet="ProductModelIllustration">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="IllustrationID" ColumnName="IllustrationID" />
+                <ScalarProperty Name="ProductModelID" ColumnName="ProductModelID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductPhoto">
+            <EntityTypeMapping TypeName="Company.Models.Production.ProductPhoto">
+              <MappingFragment StoreEntitySet="ProductPhoto">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="LargePhotoFileName" ColumnName="LargePhotoFileName" />
+                <ScalarProperty Name="LargePhoto" ColumnName="LargePhoto" />
+                <ScalarProperty Name="ThumbnailPhotoFileName" ColumnName="ThumbnailPhotoFileName" />
+                <ScalarProperty Name="ThumbNailPhoto" ColumnName="ThumbNailPhoto" />
+                <ScalarProperty Name="ProductPhotoID" ColumnName="ProductPhotoID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductProductPhoto">
+            <EntityTypeMapping TypeName="Company.Models.Production.ProductProductPhoto">
+              <MappingFragment StoreEntitySet="ProductProductPhoto">
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="Primary" ColumnName="Primary" />
+                <ScalarProperty Name="ProductPhotoID" ColumnName="ProductPhotoID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
