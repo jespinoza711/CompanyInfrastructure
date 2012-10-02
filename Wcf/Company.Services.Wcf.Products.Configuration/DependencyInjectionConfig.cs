@@ -22,7 +22,7 @@ namespace Company.Services.Wcf.Products.Configuration
             kernel.Bind<ICoreUnitOfWork>().To<Company.DataAccessLayer.UnitOfWork>();
             kernel.Bind<IRepository<Product>>().To<Company.DataAccessLayer.GenericRepository<Product>>();
 
-            kernel.Bind<IProductLogic>().To<Company.BusinessLayer.Mock.MockProductLogic>();
+            kernel.Bind<IProductLogic>().To<Company.BusinessLayer.DbProductLogic>();
         }
     }
 }

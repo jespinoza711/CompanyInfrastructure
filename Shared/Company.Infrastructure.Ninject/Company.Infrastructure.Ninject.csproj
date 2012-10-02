@@ -13,6 +13,10 @@
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -37,6 +41,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,6 +52,8 @@
     <Compile Include="NinjectDependencyResolver.cs" />
     <Compile Include="NinjectDependencyScope.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Wcf\DependencyInjectionBasedInstanceProvider.cs" />
+    <Compile Include="Wcf\ServiceInjectionException.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Company.Infrastructure.AppConfiguration\Company.Infrastructure.AppConfiguration.csproj">

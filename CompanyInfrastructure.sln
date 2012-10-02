@@ -31,6 +31,45 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Company.BusinessLayer.Mock", "Test\Company.BusinessLayer.Mock\Company.BusinessLayer.Mock.csproj", "{897AD7F4-8E8C-40FC-A57C-64DED2C2F10D}"
 EndProject
 Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 12
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://skironbase8:8080/tfs/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Data\\Company.DataAccessLayer\\Company.DataAccessLayer.csproj
+		SccProjectName1 = Data/Company.DataAccessLayer
+		SccLocalPath1 = Data\\Company.DataAccessLayer
+		SccProjectUniqueName2 = Data\\Company.Models.Production\\Company.Models.Production.csproj
+		SccProjectName2 = Data/Company.Models.Production
+		SccLocalPath2 = Data\\Company.Models.Production
+		SccProjectUniqueName3 = Shared\\Company.BusinessLayer\\Company.BusinessLayer.csproj
+		SccProjectName3 = Shared/Company.BusinessLayer
+		SccLocalPath3 = Shared\\Company.BusinessLayer
+		SccProjectUniqueName4 = Shared\\Company.Infrastructure.AppConfiguration\\Company.Infrastructure.AppConfiguration.csproj
+		SccProjectName4 = Shared/Company.Infrastructure.AppConfiguration
+		SccLocalPath4 = Shared\\Company.Infrastructure.AppConfiguration
+		SccProjectUniqueName5 = Shared\\Company.Infrastructure.BusinessLayer\\Company.Infrastructure.BusinessLayer.csproj
+		SccProjectName5 = Shared/Company.Infrastructure.BusinessLayer
+		SccLocalPath5 = Shared\\Company.Infrastructure.BusinessLayer
+		SccProjectUniqueName6 = Shared\\Company.Infrastructure.DataAccessLayer\\Company.Infrastructure.DataAccessLayer.csproj
+		SccProjectName6 = Shared/Company.Infrastructure.DataAccessLayer
+		SccLocalPath6 = Shared\\Company.Infrastructure.DataAccessLayer
+		SccProjectUniqueName7 = Shared\\Company.Infrastructure.Domain\\Company.Infrastructure.Domain.csproj
+		SccProjectName7 = Shared/Company.Infrastructure.Domain
+		SccLocalPath7 = Shared\\Company.Infrastructure.Domain
+		SccProjectUniqueName8 = Shared\\Company.Infrastructure.Ninject\\Company.Infrastructure.Ninject.csproj
+		SccProjectName8 = Shared/Company.Infrastructure.Ninject
+		SccLocalPath8 = Shared\\Company.Infrastructure.Ninject
+		SccProjectUniqueName9 = Test\\Company.BusinessLayer.Mock\\Company.BusinessLayer.Mock.csproj
+		SccProjectName9 = Test/Company.BusinessLayer.Mock
+		SccLocalPath9 = Test\\Company.BusinessLayer.Mock
+		SccProjectUniqueName10 = Wcf\\Company.Services.Wcf.Products.Configuration\\Company.Services.Wcf.Products.Configuration.csproj
+		SccProjectName10 = Wcf/Company.Services.Wcf.Products.Configuration
+		SccLocalPath10 = Wcf\\Company.Services.Wcf.Products.Configuration
+		SccProjectUniqueName11 = Wcf\\Company.Services.Wcf.Products\\Company.Services.Wcf.Products.csproj
+		SccProjectName11 = Wcf/Company.Services.Wcf.Products
+		SccLocalPath11 = Wcf\\Company.Services.Wcf.Products
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
